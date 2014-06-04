@@ -3,6 +3,7 @@ package com.jonathanfinerty.todo;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -27,6 +28,18 @@ public class TodoActivity extends Activity {
         lvItems.setAdapter(itemsAdapter);
         items.add("First Item");
         items.add("Second Item");
+        setupListViewListener();
+    }
+
+    private void setupListViewListener() {
+        lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                items.remove(position);
+                itemsAdapter.notifyDataSetChanged();
+                return true;
+            }
+        });
     }
 
     public void addToDoItem(View view) {
