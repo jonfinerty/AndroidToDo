@@ -2,7 +2,9 @@ package com.jonathanfinerty.todo;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -25,5 +27,11 @@ public class TodoActivity extends Activity {
         lvItems.setAdapter(itemsAdapter);
         items.add("First Item");
         items.add("Second Item");
+    }
+
+    public void addToDoItem(View view) {
+        EditText editText = (EditText) findViewById(R.id.etNewItem);
+        itemsAdapter.add(editText.getText().toString());
+        editText.setText("");
     }
 }
